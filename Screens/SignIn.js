@@ -21,48 +21,48 @@ const SignIn = () => {
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.subContainer}>
         <View style={styles.headerContiainer}>
-          <Image
-            style={styles.arrow}
-            source={require("../assets/icons/icons8-back-100.png")}
-          />
-          <Text style={styles.headerText}>Welcome Back!</Text>
+          <View style={styles.subHeaderContainer}>
+            <Image
+              style={styles.arrow}
+              source={require("../assets/icons/icons8-back-100.png")}
+            />
+            <Text style={styles.headerText}>Welcome Back!</Text>
+          </View>
         </View>
 
-        <View>
-          <View style={styles.form}>
-            <View style={styles.emailInput}>
-              <Text style={styles.formText}>Email Address</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="name@example.com"
-              />
-            </View>
-            <View style={styles.emailInput}>
-              <Text style={styles.formText}>Password</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="Enter your password"
-              />
-            </View>
+        <View style={styles.form}>
+          <View style={styles.emailInput}>
+            <Text style={styles.formText}>Email Address</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="name@example.com"
+            />
+          </View>
+          <View style={styles.emailInput}>
+            <Text style={styles.formText}>Password</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Enter your password"
+            />
+          </View>
 
-            <View>
-              <CheckBox
-                onClick={handleClick}
-                value={isChecked}
-                onValueChange={handleClick}
-                style={styles.hint}
-                leftText={"Remember me"}
-              />
-            </View>
-          </View>
           <View>
-            <TouchableOpacity
-              style={styles.signInButton}
-              // onPress={() => navigation.navigate("SignIn")}
-            >
-              <Text style={styles.signInText}>Sign In</Text>
-            </TouchableOpacity>
+            <CheckBox
+              onClick={handleClick}
+              value={isChecked}
+              onValueChange={handleClick}
+              style={styles.hint}
+              leftText={"Remember me"}
+            />
           </View>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={styles.signInButton}
+            // onPress={() => navigation.navigate("SignIn")}
+          >
+            <Text style={styles.signInText}>Sign In</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     flexDirection: "column",
-    justifyContent: "start",
+    justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
     padding: 20,
@@ -85,10 +85,14 @@ const styles = StyleSheet.create({
 
   headerContiainer: {
     flexDirection: "row",
-    alignItems: "start",
-    justifyContent: "start",
-    gap: 10,
+    justifyContent: "space-between",
+    width: 350,
     marginTop: 30,
+  },
+
+  subHeaderContainer: {
+    flexDirection: "row",
+    gap: 20,
   },
 
   arrow: {
