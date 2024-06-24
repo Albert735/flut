@@ -28,39 +28,41 @@ const SignIn = () => {
           <Text style={styles.headerText}>Welcome Back!</Text>
         </View>
 
-        <View style={styles.form}>
-          <View style={styles.emailInput}>
-            <Text style={styles.formText}>Email Address</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="name@example.com"
-            />
-          </View>
-          <View style={styles.emailInput}>
-            <Text style={styles.formText}>Password</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Enter your password"
-            />
-          </View>
-
-          <View>
-            <CheckBox
-              onClick={handleClick}
-              value={isChecked}
-              onValueChange={handleClick}
-              style={styles.hint}
-              leftText={"Remember me"}
-            />
-          </View>
-        </View>
         <View>
-          <TouchableOpacity
-            style={styles.signInButton}
-            // onPress={() => navigation.navigate("SignIn")}
-          >
-            <Text style={styles.signInText}>Sign In</Text>
-          </TouchableOpacity>
+          <View style={styles.form}>
+            <View style={styles.emailInput}>
+              <Text style={styles.formText}>Email Address</Text>
+              <TextInput
+                style={styles.textInput}
+                placeholder="name@example.com"
+              />
+            </View>
+            <View style={styles.emailInput}>
+              <Text style={styles.formText}>Password</Text>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Enter your password"
+              />
+            </View>
+
+            <View>
+              <CheckBox
+                onClick={handleClick}
+                value={isChecked}
+                onValueChange={handleClick}
+                style={styles.hint}
+                leftText={"Remember me"}
+              />
+            </View>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={styles.signInButton}
+              // onPress={() => navigation.navigate("SignIn")}
+            >
+              <Text style={styles.signInText}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "start",
     alignItems: "center",
     height: "100%",
     padding: 20,
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "start",
     justifyContent: "start",
-    gap:10,
+    gap: 10,
     marginTop: 30,
   },
 
