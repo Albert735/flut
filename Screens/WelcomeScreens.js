@@ -32,7 +32,10 @@ const WelcomeScreens = ({ navigation }) => {
             <Text style={styles.signInText}>Sign In</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.noAccount}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("SignUp")}
+            style={styles.noAccount}
+          >
             <Text style={styles.mainText}>
               No account yet? <Text style={styles.text}>Sign up</Text>
             </Text>

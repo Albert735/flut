@@ -5,6 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import React from "react";
 import CheckBox from "react-native-check-box";
@@ -12,10 +13,18 @@ import CheckBox from "react-native-check-box";
 const SignIn = () => {
   const [isChecked, setIsChecked] = React.useState(false);
 
+  const handleClick = (newValue) => {
+    setIsChecked(newValue);
+  };
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.subContainer}>
-        <View>
+        <View style={styles.headerContiainer}>
+          <Image
+            style={styles.arrow}
+            source={require("../assets/icons/icons8-back-100.png")}
+          />
           <Text style={styles.headerText}>Welcome Back!</Text>
         </View>
 
@@ -36,7 +45,13 @@ const SignIn = () => {
           </View>
 
           <View>
-            <CheckBox style={styles.hint} leftText={"Remember me"} />
+            <CheckBox
+              onClick={handleClick}
+              value={isChecked}
+              onValueChange={handleClick}
+              style={styles.hint}
+              leftText={"Remember me"}
+            />
           </View>
         </View>
         <View>
@@ -66,11 +81,25 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
+  headerContiainer: {
+    flexDirection: "row",
+    alignItems: "start",
+    justifyContent: "start",
+    gap:10,
+    marginTop: 30,
+  },
+
+  arrow: {
+    height: 32,
+    width: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
   headerText: {
     fontWeight: "700",
     fontSize: 24,
     lineHeight: 32,
-    marginTop: 30,
   },
 
   form: {
