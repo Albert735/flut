@@ -9,7 +9,7 @@ import {
 import React from "react";
 import moment from "moment";
 import { Shows } from "../Mock/Shows";
-import BottomNavigation from "../Components/BottomNavigation";
+// import BottomNavigation from "../Components/BottomNavigation";
 
 const Home = ({ navigation }) => {
   const now = moment().format("MMMM Do YYYY, h:mm:ss a");
@@ -112,7 +112,7 @@ const Home = ({ navigation }) => {
         </View>
 
         {/* Bottom Navigation */}
-        <BottomNavigation />
+        {/* <BottomNavigation /> */}
       </View>
     </SafeAreaView>
   );

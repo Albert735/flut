@@ -10,7 +10,6 @@ import {
 import React from "react";
 import CheckBox from "react-native-check-box";
 import { useNavigation } from "@react-navigation/native";
-import Home from "../Screens/Home";
 
 const SignIn = () => {
   const [isChecked, setIsChecked] = React.useState(false);
@@ -35,6 +34,7 @@ const SignIn = () => {
     }
 
     return setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = () => {
@@ -66,7 +66,7 @@ const SignIn = () => {
             <Text style={styles.formText}>Email Address</Text>
             <TextInput
               value={email}
-              onChange={setEmail}
+              onChangeText={(text) => setEmail(text)}
               style={styles.textInput}
               placeholder="name@example.com"
               keyboardType="email-address"
@@ -81,7 +81,7 @@ const SignIn = () => {
             <TextInput
               secureTextEntry
               value={password}
-              onChange={setPassword}
+              onChangeText={(text) => setPassword(text)}
               style={styles.textInput}
               placeholder="Enter your password"
             />

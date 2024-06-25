@@ -5,7 +5,7 @@ import SignIn from "../Screens/SignIn";
 import Home from "../Screens/Home";
 import WelcomeScreens from "../Screens/WelcomeScreens";
 import SplashScreen from "../Screens/SplashScreen";
-// import BottomNavigation from "./BottomNavigation";
+import BottomNavigation from "./BottomNavigation";
 import SearchLocationScreen from "../Screens/SearchLocationScreen";
 import React, { useState } from "react";
 
@@ -13,9 +13,9 @@ const Stack = createNativeStackNavigator();
 export default function StackNavigation() {
   const [isShowSplash, setIsShowSplash] = useState(true);
 
-//   if (isShowSplash) {
-//     return <SplashScreen />;
-//   }
+  //   if (isShowSplash) {
+  //     return <SplashScreen />;
+  //   }
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -65,11 +65,11 @@ export default function StackNavigation() {
             options={{ headerShown: false }}
           />
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Main"
             component={BottomNavigation}
             options={{ headerShown: false }}
-          /> */}
+          />
         </Stack.Navigator>
       )}
     </>
