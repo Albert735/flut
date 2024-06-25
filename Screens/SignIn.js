@@ -9,45 +9,55 @@ import {
 } from "react-native";
 import React from "react";
 import CheckBox from "react-native-check-box";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   const [isChecked, setIsChecked] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [errors, setErrors] = React.useState({});
-  const navigation = useNavigation();
+  // const [email, setEmail] = React.useState("");
+  // const [password, setPassword] = React.useState("");
+  // const [errors, setErrors] = React.useState({});
 
-  const validate = () => {
-    const newErrors = {};
+  // const validate = () => {
+  //   const newErrors = {};
 
-    if (!email) {
-      newErrors.email = "Email is required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-      newErrors.email = "Enter a valid email address";
-    }
+  //   if (!email) {
+  //     newErrors.email = "Email is required";
+  //   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+  //     newErrors.email = "Enter a valid email address";
+  //   }
 
-    if (!password) {
-      newErrors.password = "Password is required";
-    } else if (password.length < 8) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
+  //   if (!password) {
+  //     newErrors.password = "Password is required";
+  //   } else if (password.length < 8) {
+  //     newErrors.password = "Password must be at least 6 characters";
+  //   }
 
-    return setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  //   return setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
 
-  const handleSubmit = () => {
-    if (validate()) {
-      navigation.navigate("Home");
-      console.log("Navigating to Home");
-    }
-    console.log("form submitted");
-    console.log("Navigating to Home");
+  // const handleSubmit = () => {
+  //   if (validate()) {
+  //     navigation.navigate("Liked");
+  //     console.log("Navigating to Home");
+  //   }
 
-    // navigation.navigate("Home"); // navigate to Home screen
-    
-  };
+  //   console.log("form submitted");
+  //   console.log("Navigating to Home");
+  //   // navigation.navigate("Home"); // navigate to Home screen
+  // };
+
+  // const handleSubmit = () => {
+  //   console.log("Submitting form");
+  //   if (validate()) {
+  //     console.log("Form is valid, navigating to Home");
+  //     navigation.navigate("Home");
+  //   } else {
+  //     console.log("Form is invalid, staying on SignIn");
+  //   }
+
+  //   console.log("form submitted");
+  // };
 
   const handleClick = (newValue) => {
     setIsChecked(newValue);
@@ -70,45 +80,47 @@ const SignIn = () => {
           <View style={styles.emailInput}>
             <Text style={styles.formText}>Email Address</Text>
             <TextInput
-              value={email}
-              onChangeText={(text) => setEmail(text)}
+              // value={email}
+              // onChangeText={(text) => setEmail(text)}
               style={styles.textInput}
               placeholder="name@example.com"
               keyboardType="email-address"
             />
-            {errors.email && (
+            {/* {errors.email && (
               <Text style={styles.errorText}>{errors.email}</Text>
-            )}
+            )} */}
           </View>
 
           <View style={styles.emailInput}>
             <Text style={styles.formText}>Password</Text>
             <TextInput
               secureTextEntry
-              value={password}
-              onChangeText={(text) => setPassword(text)}
+              // value={password}
+              // onChange={setPassword}
               style={styles.textInput}
               placeholder="Enter your password"
             />
-            {errors.password && (
+            {/* {errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
-            )}
+            )} */}
           </View>
 
           <View>
             <CheckBox
               onClick={handleClick}
               isChecked={isChecked}
-              style={styles.hint}
+              style={styles.checkBox}
               leftText={"Remember me"}
             />
           </View>
         </View>
-        <View>
-          <TouchableOpacity style={styles.signInButton} onPress={handleSubmit}>
-            <Text style={styles.signInText}>Sign In</Text>
-          </TouchableOpacity>
-        </View>
+
+        <TouchableOpacity
+          style={styles.signInButton}
+          onPress={() => navigation.navigate("Home")}
+        >
+          <Text style={styles.signInText}>Sign In</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -168,6 +180,9 @@ const styles = StyleSheet.create({
   emailInput: {
     height: 58.01,
     justifyContent: "space-between",
+  },
+  checkBox: {
+    color: "red",
   },
 
   textInput: {

@@ -7,6 +7,11 @@ import WelcomeScreens from "../Screens/WelcomeScreens";
 import SplashScreen from "../Screens/SplashScreen";
 import SearchLocationScreen from "../Screens/SearchLocationScreen";
 import React, { useState } from "react";
+import BottomNavigation from "./BottomNavigation";
+import Profile from "../Screens/Profile";
+import Liked from "../Screens/Liked";
+import Ticket from "../Screens/Ticket";
+
 
 const Stack = createNativeStackNavigator();
 export default function StackNavigation() {
@@ -61,6 +66,26 @@ export default function StackNavigation() {
           <Stack.Screen
             name="Home"
             component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Ticket"
+            component={Ticket}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Liked"
+            component={Liked}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Main"
+            component={BottomNavigation}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
