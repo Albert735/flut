@@ -10,7 +10,7 @@ import {
 import React from "react";
 import CheckBox from "react-native-check-box";
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   const [isChecked, setIsChecked] = React.useState(false);
 
   const handleClick = (newValue) => {
@@ -59,7 +59,7 @@ const SignIn = () => {
         <View>
           <TouchableOpacity
             style={styles.signInButton}
-            // onPress={() => navigation.navigate("SignIn")}
+            onPress={() => navigation.navigate("Home")}
           >
             <Text style={styles.signInText}>Sign In</Text>
           </TouchableOpacity>

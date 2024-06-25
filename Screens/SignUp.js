@@ -10,13 +10,7 @@ import {
 import React from "react";
 import CheckBox from "react-native-check-box";
 
-const SignIn = () => {
-  const [isChecked, setIsChecked] = React.useState(false);
-
-  const handleClick = (newValue) => {
-    setIsChecked(newValue);
-  };
-
+const SignIn = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.subContainer}>
@@ -61,7 +55,7 @@ const SignIn = () => {
         <View>
           <TouchableOpacity
             style={styles.signInButton}
-            // onPress={() => navigation.navigate("SignIn")}
+            onPress={() => navigation.navigate("LocationScreen")}
           >
             <Text style={styles.signInText}>Sign Up</Text>
           </TouchableOpacity>
@@ -145,13 +139,11 @@ const styles = StyleSheet.create({
     width: 317,
     height: 60,
     borderRadius: 10,
-    paddingHorizontal: 131.5,
-    paddingVertical: 18,
   },
   signInText: {
     fontSize: 16,
     color: "#fff",
-    fontWeight: 500,
+    fontWeight: "500",
     lineHeight: 24,
   },
 });
