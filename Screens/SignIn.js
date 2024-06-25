@@ -40,8 +40,13 @@ const SignIn = () => {
   const handleSubmit = () => {
     if (validate()) {
       navigation.navigate("Home");
+      console.log("Navigating to Home");
     }
     console.log("form submitted");
+    console.log("Navigating to Home");
+
+    // navigation.navigate("Home"); // navigate to Home screen
+    
   };
 
   const handleClick = (newValue) => {
@@ -93,8 +98,7 @@ const SignIn = () => {
           <View>
             <CheckBox
               onClick={handleClick}
-              value={isChecked}
-              onValueChange={handleClick}
+              isChecked={isChecked}
               style={styles.hint}
               leftText={"Remember me"}
             />
