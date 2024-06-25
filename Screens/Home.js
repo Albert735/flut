@@ -1,7 +1,18 @@
-import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+} from "react-native";
 import React from "react";
+import moment from "moment";
+import { Shows } from "../Mock/Shows";
+import BottomNavigation from "../Components/BottomNavigation";
 
 const Home = ({ navigation }) => {
+  const now = moment().format("MMMM Do YYYY, h:mm:ss a");
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.subContainer}>
@@ -32,7 +43,7 @@ const Home = ({ navigation }) => {
           />
           <Text style={styles.newText}>New</Text>
           <View style={styles.cardText}>
-            <Text style={styles.cardDate}>Date</Text>
+            <Text style={styles.cardDate}>{now}</Text>
             <Text style={styles.cardTitle}>La rosalia</Text>
           </View>
           <View style={styles.cardLocation}>
@@ -55,6 +66,53 @@ const Home = ({ navigation }) => {
             </View>
           </View>
         </View>
+
+        {/* FlastList */}
+        <View style={styles.flatListContainer}>
+          <View style={styles.popular}>
+            <Text style={styles.popularText}>Popular in Shows</Text>
+          </View>
+          <View style={styles.flatListCardContainer}>
+            <FlatList
+              style={styles.flatList}
+              data={Shows}
+              renderItem={({ item }) => (
+                <View style={styles.flatListCardContainer}>
+                  <View style={styles.flatListCard}>
+                    <Image style={styles.imageFlatList} source={item.image} />
+                    <View style={styles.flatListText}>
+                      <Text>{now}</Text>
+                      <Text style={styles.flatListTitle}>{item.name}</Text>
+                      <View style={styles.textIcon}>
+                        <Image
+                          style={styles.Icon}
+                          source={require("../assets/icons/location.png")}
+                        />
+                        <Text>{item.location}</Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View style={styles.iconsSection}>
+                    <Image
+                      style={styles.Icon}
+                      source={require("../assets/icons/share.png")}
+                    />
+                    <Image
+                      style={styles.Icon}
+                      source={require("../assets/icons/heart.png")}
+                    />
+                  </View>
+                </View>
+              )}
+              keyExtractor={(item) => item.id}
+              Vertical
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </View>
+
+        {/* Bottom Navigation */}
+        <BottomNavigation />
       </View>
     </SafeAreaView>
   );
@@ -69,7 +127,7 @@ const styles = StyleSheet.create({
 
   subContainer: {
     padding: 20,
-    gap: 20,
+    gap: 17,
   },
 
   head: {
@@ -180,5 +238,40 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     fontSize: 12,
     lineHeight: 19.2,
+  },
+
+  flatListCardContainer: {
+    marginVertical: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  flatList: {
+    width: 389,
+    height: 355,
+  },
+
+  imageFlatList: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+  },
+  flatListCard: {
+    flex: 1,
+    flexDirection: "row",
+    gap: 10,
+  },
+
+  flatListText: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: 80,
+  },
+
+  flatListTitle: {
+    fontWeight: "700",
+    fontSize: 16,
+    lineHeight: 24,
   },
 });

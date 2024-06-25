@@ -8,7 +8,9 @@ import {
 } from "react-native";
 import React from "react";
 
+
 const SearchLocationScreen = () => {
+  
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.subContainer}>

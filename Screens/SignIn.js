@@ -9,9 +9,40 @@ import {
 } from "react-native";
 import React from "react";
 import CheckBox from "react-native-check-box";
+import { useNavigation } from "@react-navigation/native";
+import Home from "../Screens/Home";
 
-const SignIn = ({navigation}) => {
+const SignIn = () => {
   const [isChecked, setIsChecked] = React.useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [errors, setErrors] = React.useState({});
+  const navigation = useNavigation();
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.length < 8) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    return setErrors(newErrors);
+  };
+
+  const handleSubmit = () => {
+    if (validate()) {
+      navigation.navigate("Home");
+    }
+    console.log("form submitted");
+  };
 
   const handleClick = (newValue) => {
     setIsChecked(newValue);
@@ -34,16 +65,29 @@ const SignIn = ({navigation}) => {
           <View style={styles.emailInput}>
             <Text style={styles.formText}>Email Address</Text>
             <TextInput
+              value={email}
+              onChange={setEmail}
               style={styles.textInput}
               placeholder="name@example.com"
+              keyboardType="email-address"
             />
+            {errors.email && (
+              <Text style={styles.errorText}>{errors.email}</Text>
+            )}
           </View>
+
           <View style={styles.emailInput}>
             <Text style={styles.formText}>Password</Text>
             <TextInput
+              secureTextEntry
+              value={password}
+              onChange={setPassword}
               style={styles.textInput}
               placeholder="Enter your password"
             />
+            {errors.password && (
+              <Text style={styles.errorText}>{errors.password}</Text>
+            )}
           </View>
 
           <View>
@@ -57,10 +101,7 @@ const SignIn = ({navigation}) => {
           </View>
         </View>
         <View>
-          <TouchableOpacity
-            style={styles.signInButton}
-            onPress={() => navigation.navigate("Home")}
-          >
+          <TouchableOpacity style={styles.signInButton} onPress={handleSubmit}>
             <Text style={styles.signInText}>Sign In</Text>
           </TouchableOpacity>
         </View>
@@ -151,5 +192,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: 500,
     lineHeight: 24,
+  },
+
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    fontWeight: 300,
   },
 });
